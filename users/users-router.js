@@ -15,4 +15,4 @@ router.get('/', restricted, checkRole('HR'), (req,res) => {
 
 //export
 
-module.exports = router
+module.exports = router 
