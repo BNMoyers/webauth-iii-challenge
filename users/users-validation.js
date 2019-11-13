@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 //exports
 module.exports = {
   validateUser,
-  getJwtToken
+  getJwtToken,
+  checkRole
 };
 
 //helper functions
@@ -40,6 +41,14 @@ function getJwtToken(username) {
   };
 
   return jwt.sign(payload, secret, options);
+}
+
+function checkRole(role) {
+    return function(req, res, next) {
+        role === "HR" 
+            ? next()
+            : res.status(403).json({ message: "I used to want you dead but now I only want you gone" }) 
+    }
 }
 
 
